@@ -1,5 +1,10 @@
 # OCM Bytecode Machine Reference
 
+> **Reference:**
+> This document is a reformatted programming reference for the OCM Bytecode Machine, based on the original documentation at
+> [https://wiki.physik.fu-berlin.de/linux-minidisc/ocmbytecode](https://wiki.physik.fu-berlin.de/linux-minidisc/ocmbytecode)
+
+
 ## Overview
 
 The **OCM bytecode machine** is an interpreter for a stack-based language. Operands are pushed onto a stack, and operations consume operands from the stack and push results back. This is similar to RPN calculators, PostScript, Forth, and the Java VM.
