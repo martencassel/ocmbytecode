@@ -251,6 +251,24 @@ struct array_handle {
 
 ---
 
+### 0x75–0x7D: Module Operations
+
+| Opcode | Name                | Stack Input / Output                | Effect |
+|--------|---------------------|-------------------------------------|--------|
+| 0x75   | LOADNATMOD (natmod) | blob → smallint (module handle)     | Loads a native module from a blob. The first 0x60 bytes are a header containing the module name. The module is decompressed, relocated, and its exports are put into the global exports table (unless named "bc"). |
+| 0x76   | UNLOADNATMOD (addexports) | smallint (module handle) → smallint (1/0) | Unloads the given native module. If not named "bc", exports are removed from the global symbol table before unloading. |
+| 0x77   | CALLNATMOD (callmod) | args..., smallint (module handle) → result(s) | Calls the native code for the given module handle. The handle is removed from the stack before execution. The module can manipulate the stack as needed. |
+| 0x78   | CALLBLOBMOD (callblobmod) | args..., blob (module) → result(s) | Executes native code from a non-compressed module blob. The blob is relocated and exports are loaded (unless named "bc"). The entrypoint is called as in 0x77. |
+| 0x79   | MODNAME (modname)   | smallint (module handle) → blob     | Returns the name of the module as a blob. |
+| 0x7A   | MODHND (modhnd)     | blob (module name) → smallint (handle) | Returns the module handle for the given module name. |
+| 0x7B   | MODCREATE (modcreate) | blob (module name), blob (contents) → smallint (handle) | Creates a module entry referencing the blob's address range. |
+| 0x7C   | BCMODCREATE (bcmodcreate) | blob (contents), [blob (name)] → smallint (handle) | Copies blob contents as a bytecode module. If the top of stack is ≤8 chars, it is used as the name; otherwise, "bc" is used. |
+| 0x7D   | BCMODCALL (bcmodcall) | smallint (module handle) → —        | Executes the bytecode module referred to by the handle as a subroutine. Used to "import" OCM modules (e.g., device.sal) into a program's environment. The module and its dictionary reference are loaded using the salwrap function setDeviceSal. |
+
+---
+
+---
+
 ## Extended Opcodes
 
 ### 0x80–0xC1: Advanced Math, Crypto, Elliptic Curves

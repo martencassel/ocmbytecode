@@ -45,17 +45,26 @@ function fact(n) {
 ```
 
 **In bytecode:**
-```
-[if_blob] = [
-    PUSH 1,
-    CMP.LT,
-    IFELSE
-    PUSH1
-    [n, n-1, fact_blob, MUL]
-]
 
-[n]
-[if_blob]
+```ocm
+fact_blob = {
+    PUSH 1         ; Push constant 1
+    CMP.LT         ; Compare n < 1 (assumes n is on stack)
+    IFELSE {
+        PUSH 1     ; True branch: base case, push 1
+    } {
+        DUP        ; False branch: duplicate n
+        PUSH 1
+        SUB        ; Compute n - 1
+        fact_blob
+        EXEC       ; Recursive call: fact(n-1)
+        MUL        ; Multiply n * fact(n-1)
+    }
+}
+
+; To call factorial:
+PUSH n
+fact_blob
 EXEC
 ```
 
@@ -200,3 +209,50 @@ EXEC               ; Apply blob to x, can be done in a loop
 
 **Summary:**
 Dynamic code generation in OCM means you can build, store, and execute new program blocks at runtime, enabling flexible and powerful programming patterns.
+
+---
+
+## Example: Exported Procedures and External Loader Call
+
+You can implement an export mechanism in OCM bytecode to allow an external loader to call one of several exported procedures by index.
+
+### High-level example:
+
+```c
+export function main(x) {
+    return fact(x);
+}
+
+export function add(a, b) {
+    return a + b;
+}
+```
+
+### OCM Bytecode Implementation
+
+```
+[main_blob]         ; Push the main procedure blob
+[add_blob]          ; Push the add procedure blob
+2 ARRAY             ; Create an array of exported procedures: [main_blob, add_blob]
+
+; The loader pushes the index of the procedure to call, followed by any arguments.
+; For example, to call add(2, 3):
+PUSH 1              ; Index 1 for 'add'
+PUSH 2
+PUSH 3
+
+; Now call the export dispatcher:
+[exports_array]     ; Push the array of exported procedures
+EXCH                ; Swap to get [exports_array] [index]
+GET                 ; Get the procedure blob at the given index
+EXEC                ; Execute the selected procedure blob
+```
+
+**How it works:**
+- The exported procedures are packed into an array in a known order.
+- The loader pushes the index and arguments, then the array, and the dispatcher selects and executes the correct procedure.
+- The result is left on the stack.
+
+---
+
+**This pattern enables modular OCM programs to be called from external code, supporting multiple entry points.**
