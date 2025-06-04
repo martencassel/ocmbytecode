@@ -1,0 +1,43 @@
+module MathUtils {
+    // Global variable
+    var counter = 0;
+
+    // Function: add two numbers
+    function add(a, b) {
+        return a + b;
+    }
+
+    // Function: factorial (recursive)
+    function factorial(n) {
+        if (n <= 1) {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        }
+    }
+
+    // Function: increment global counter
+    function increment() {
+        counter = counter + 1;
+        return counter;
+    }
+}
+
+ // Function: add two numbers
+function add(a, b) {
+    return a + b;
+}
+
+ADD ; 0x11: a, b -> a+b
+RETURN
+
+function factorial(n) {
+    if (n <= 1) return 1;
+    else return n * factorial(n - 1);
+}
+
+; Stack: n
+PUSH 1          ; 0x38: push 1
+CMP.LE         ; 0x3A: compare n <= 1
+IFELSE         ; 0x32; if n< 1, exec [PUSH 1], else exec [n, n-1, CALL factorial, MUL ]
+
