@@ -299,4 +299,3 @@ struct array_handle {
 ---
 
 *This document is a reformatted reference for the OCM Bytecode Machine, based on the original documentation.*
-# ocmbytecode
