@@ -1,0 +1,1 @@
+LIC123456|CONTENT789|user@example.com|DEVICE001|2024-12-31|max_plays:100

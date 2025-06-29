@@ -1,0 +1,6 @@
+This is a secret movie file that needs DRM protection.
+It contains valuable intellectual property.
+Each block will be encrypted with different keys for security.
+Block 1 content here.
+Block 2 content here.
+Block 3 content here.

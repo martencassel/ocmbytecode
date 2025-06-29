@@ -1,0 +1,8 @@
+{
+  "content_id": "MOVIE123",
+  "license_id": "LIC_MOVIE123",
+  "license_server_url": "https://license.example.com",
+  "content_key_encrypted": "U2FsdGVkX1+UASNl/vY+ls21V4UaAUkeTlFgN64wpWc6nvPrbF0S0aMjwayq4/A/
+xx0Lnw3Ze886KFzG0d/qKKh241PhXT5f+m+0uIp+CvfnP0L0oBAMNuZMJUOOygYQ",
+  "content_file": "movie_encrypted.txt"
+}

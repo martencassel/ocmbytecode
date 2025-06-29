@@ -1,0 +1,95 @@
+# US Patent 7765604 - Digital Rights Management System
+
+## Abstract / Summary
+> **System Overview**: This patent describes a digital rights management (DRM) system where content distribution and access control are separated.
+
+A client receives encrypted content from content server. The header of the content includes license-identifying information for identifying a license required to utilize the content. The client requests a license server to transmit the license identified by the license-identifying information. When receiving the request for a license, the license server carries out a charging process before transmitting the license to the client. The client stores the license received from the license server. The stored license serves as a condition for encrypting and playing back the content. As a result, content can be distributed with a high degree of freedom and only an authorized user is capable of utilizing the content.
+
+> **Key Innovation**: Separation of content distribution from license validation, enabling flexible content distribution while maintaining strict access control.
+
+## Field of Invention
+> **Technical Domain**: Information processing, digital rights management, content protection
+
+In general, the present invention relates to an information processing method, an information processing apparatus, a program storage medium and a program. More particularly, the present invention relates to an information processing method and an information processing apparatus which are used for preventing content from being copied and used illegally without a license from the owner of the copyright in the content, a program for implementing the information processing method and a program storage medium for storing the program.
+## Background and Problem Statement
+> **Market Problem**: Illegal content sharing through peer-to-peer networks causing revenue loss for content creators
+
+In recent years, users have provided musical data they own to other users and have received musical data they do not own from other users through the Internet in content-exchanging system that allows a plurality of users to exchange musical data free of charge. In Such content-exchanging System, theoretically, music or another content owned by one user can thus be enjoyed by other users. Therefore, many users do not have to purchase Such a piece of music or such content. As a result, since Such a piece of music or Such content does not sell well, the owner of the copyright in the content loses the opportunity to gain a royalty for the use of the piece of music or the content accom panying the sales of the piece of music or the content. In Society, there is thus a demand to prevent content from being copied and used illegally.
+
+> **Objective**: Create a reliable system to prevent unauthorized content usage while maintaining distribution flexibility
+
+## Primary Claims - Information Processing Apparatus
+> **Core Innovation**: Client-side apparatus that enforces license requirements for content access
+
+It is thus an object of the present invention addressing the problems described above to reliably prevent content from being used illegally. In accordance with an aspect of the present invention, there is provided an information processing apparatus for allowing usage of content by requiring a license for using the content. The information processing apparatus includes a content Stor age unit operable to store license-identification information for specifying the license for using the content, encrypted data of the content and key information required for decrypt ing the encrypted data of the content; a license storage unit operable to store the license for using the content, including content-specifying information for specifying the content, the use of which is allowed by the license; a judgment unit operable to determine whether the license for using the con tent has been stored in the license storage unit; and a decryp tion unit operable to decrypt the encrypted data of the content if the license for using the content has been stored in the license storage unit.
+
+> **Communication Components**: Network functionality for license acquisition
+
+The information processing apparatus further includes a transmitter operable to transmit a request for the license to a license server, the license request including the license-iden tification information; and a receiver operable to receive the
+license transmitted by the license server. The received license may be stored in the license storage unit. The information processing apparatus further includes a reproducing unit operable to reproduce the data of the content decrypted by the decryption unit, wherein the data of the content is text data, image data, audio data, moving-picture data or combinations thereof.
+
+> **Cryptographic Infrastructure**: EKB (Enabling Key Block) system for secure key distribution
+
+The information processing apparatus further includes a device-node-key storage unit operable to store a device node key. The key information includes an EKB (Enabling Key Block). The decryption unit is operable to decrypt the EKB (Enabling Key Block) using the device node key to obtain a root key, and to decrypt the data of the content using the root key.
+
+> **License Features**: Usage conditions and digital signatures for authenticity
+
+In the information processing apparatus, the license further includes usage-condition information showing a condition for using the content, the use of which is allowed by the license.
+
+In the information processing apparatus, the license further includes an electronic signature signed by using a secret key of a license server.
+
+> **Device Binding**: Terminal-specific licenses to prevent license sharing
+
+The information processing apparatus further has a termi nal-ID storage unit operable to store terminal-identification information identifying the information processing appara tus. The license request further includes the terminal identi fication information, and the received license includes a ter minal ID. The judgment unit compares the terminal ID in the received license with the terminal-identification information stored in the terminal-ID storage unit and determines that the received license is the license for using the content only if the terminal ID in the received license matches the terminal identification information stored in the terminal-ID storage unit.
+
+## Method Claims
+> **Process Definition**: The same functionality expressed as a method rather than apparatus
+
+In accordance with another aspect of the present invention, there is provided an information processing method for allowing a user to use content by requiring the user to have a license for using the content. The information processing method includes storing license-identification information for specifying the license for using the content, encrypted data of the content and key information required for decrypt ing the encrypted data of the content; storing the license for using the content in a license storage unit, the license includ ing content-specifying information for specifying the con tent, the use of which is allowed by the license; determining whether the license for using the content has been stored in the license storage unit; and decrypting the encrypted data of the content if the license for using the content has been stored in the license storage unit.
+
+## Program and Storage Medium Claims
+> **Software Implementation**: Patent coverage for software implementations and storage media
+
+In accordance with a further aspect of the present inven tion, there is provided a recording medium recorded with a program to be executed by a computer for carrying out pro cessing to allow a user to use content by requiring the user to have a license for using the content. The program includes storing license-identification information for specifying the license for using the content, encrypted data of the content and key information required for decrypting the encrypted data of the content; storing the license for using the content in a license storage unit, the license including content-specify ing information for specifying the content, the use of which is allowed by the license; determining whether the license for using the content has been stored in the license storage unit;
+and decrypting the encrypted data of the content if the license for using the content has been stored in the license storage unit.
+
+> **Encryption Note**: The software itself may be encrypted for additional protection
+
+The program or a portion of the program may be encrypted.
+
+## License Server Claims
+> **Server-Side Infrastructure**: The complementary license server that issues and manages licenses
+
+In accordance with a still further aspect of the present invention, there is provided a license server for issuing a license for allowing the use of content. The license server includes a license storage unit operable to store the license, the license including content-specifying information for specifying the content, the use of which is allowed by the license; and terminal-identification information for identify ing an information processing apparatus; a receiver operable to receive a request for the license from the information processing apparatus, the license request including license identification information for identifying the license; an extraction unit operable to extract the license identified by the license-identification information from the license storage unit; a processor operable to add the terminal-identification information to the extracted license; a signature unit operable to put a signature on the extracted license including the ter minal-identification information using a secret key of the license server; and a transmitter operable to transmit the extracted license with the signature thereon to the informa tion processing apparatus.
+
+## License Server Method Claims
+> **Server Process**: Method claims for the license server functionality
+
+In accordance with a still further aspect of the present invention, there is provided a method for issuing a license for allowing the use of content. The method includes storing the license in a license storage unit, the license including content specifying information for specifying the content, the use of which is allowed by the license, and terminal-identification information for identifying an information processing appa ratus; receiving a request for the license from the information processing apparatus, the license request including license identification information for identifying the license; extract ing the license stored in the license storage unit and identified by the license-identification information; adding the termi nal-identification information to the extracted license; putting a signature on the extracted license including the terminal identification information using a secret key; and transmitting the extracted license with the signature thereon to the infor mation processing apparatus.
+
+## Summary of Advantages
+> **System Benefits**: Key advantages of the proposed DRM system
+
+In the information processing method, the information pro cessing apparatus and the recording medium recorded with the program which are provided by the present invention, content is decrypted and can be used on condition that the user has a license for using the content.
+
+In the license server and the information processing method provided by the present invention, a valid license is issued only to a specific information processing apparatus.
+
+---
+
+## Technical Analysis
+
+### Key Components:
+1. **EKB (Enabling Key Block)** - Hierarchical key distribution system
+2. **Device Node Keys** - Device-specific cryptographic keys
+3. **License-Content Separation** - Content and licenses distributed independently
+4. **Terminal ID Binding** - Licenses tied to specific devices
+5. **Digital Signatures** - License authenticity verification
+
+### Security Model:
+- Content encrypted with content keys
+- Content keys encrypted in EKB structure
+- EKB decrypted using device node keys
+- Licenses required to authorize decryption
+- Terminal binding prevents license sharing
+
+

@@ -1,0 +1,13 @@
+{
+  "license_id": "LIC123456",
+  "content_id": "CONTENT789",
+  "user_id": "user@example.com",
+  "device_id": "DEVICE001",
+  "valid_from": "2024-01-01",
+  "valid_until": "2024-12-31",
+  "usage_rules": {
+    "max_plays": 100,
+    "can_copy": false,
+    "can_share": false
+  }
+}
